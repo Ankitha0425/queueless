@@ -1,13 +1,18 @@
 {
   "name": "queueless",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Smart Queue and Crowd Management Platform",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "test": "node --check server.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "queue",
+    "crowd-management",
+    "queueless"
+  ],
+  "author": "Ankitha",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
