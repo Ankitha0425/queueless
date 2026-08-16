@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        PATH = "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    }
+
     stages {
 
         stage('Checkout') {
@@ -31,7 +35,12 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                echo 'Queueless deployment completed successfully'
+                withCredentials([string(credentialsId: 'render-deploy-hook', variable: 'RENDER_DEPLOY_HOOK')]) {
+                    sh '''
+                        echo "Triggering Render deployment..."
+                        curl -X POST "$RENDER_DEPLOY_HOOK"
+                    '''
+                }
             }
         }
     }
